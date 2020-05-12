@@ -57,13 +57,13 @@ import img_2_12Depth from "./img/2_12-map.png";
 
 const sketches = [
   {
-    vth: 25,
+    vth: 10,
     hth: 25,
     imageURLs : [img_2_6, img_2_6Depth],
     id: "img_2_6",
   },
   {
-    vth: 25,
+    vth: 20,
     hth: 25,
     imageURLs : [img_2_7, img_2_7Depth],
     id: "img_2_7",
@@ -94,13 +94,13 @@ const sketches = [
   },
 
   {
-    vth: 25,
+    vth: 10,
     hth: 25,
     imageURLs : [img_2_8, img_2_8Depth],
     id: "img_2_8",
   },
   {
-    vth: 25,
+    vth: 20,
     hth: 25,
     imageURLs : [img_2_10, img_2_10Depth],
     id: "img_2_10",
