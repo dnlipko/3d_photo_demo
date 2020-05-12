@@ -32,54 +32,54 @@ import mountDepth from "./img/mount-map.jpg";
 
 
 const sketches = [
-  {
-    vth: 25,
-    hth: 20,
-    imageURLs : [kitchenOriginal, kitchenDepth],
-    id: "kitchen",
-  },
-  {
-    vth: 15,
-    hth: 15,
-    imageURLs : [bedroomOriginal, bedroomDepth],
-    id: "bedroom",
-  },
+  // {
+  //   vth: 25,
+  //   hth: 20,
+  //   imageURLs : [kitchenOriginal, kitchenDepth],
+  //   id: "kitchen",
+  // },
+  // {
+  //   vth: 15,
+  //   hth: 15,
+  //   imageURLs : [bedroomOriginal, bedroomDepth],
+  //   id: "bedroom",
+  // },
   {
     vth: 15,
     hth: 15,
     imageURLs : [roomOriginal, roomDepth],
     id: "room",
   },
-  {
-    vth: 15,
-    hth: 10,
-    imageURLs : [tvOriginal, tvDepth],
-    id: "tv",
-  },
-  {
-    vth: 25,
-    hth: 15,
-    imageURLs : [ballOriginal, ballDepth],
-    id: "ball",
-  },
-  {
-    vth: 25,
-    hth: 15,
-    imageURLs : [ladyOriginal, ladyDepth],
-    id: "lady",
-  },
-  {
-    vth: 25,
-    hth: 15,
-    imageURLs : [mountOriginal, mountDepth],
-    id: "mount",
-  },
-  {
-    vth: 15,
-    hth: 45,
-    imageURLs : [toiletOriginal, toiletDepth],
-    id: "toilet",
-  },
+  // {
+  //   vth: 15,
+  //   hth: 10,
+  //   imageURLs : [tvOriginal, tvDepth],
+  //   id: "tv",
+  // },
+  // {
+  //   vth: 25,
+  //   hth: 15,
+  //   imageURLs : [ballOriginal, ballDepth],
+  //   id: "ball",
+  // },
+  // {
+  //   vth: 25,
+  //   hth: 15,
+  //   imageURLs : [ladyOriginal, ladyDepth],
+  //   id: "lady",
+  // },
+  // {
+  //   vth: 25,
+  //   hth: 15,
+  //   imageURLs : [mountOriginal, mountDepth],
+  //   id: "mount",
+  // },
+  // {
+  //   vth: 15,
+  //   hth: 45,
+  //   imageURLs : [toiletOriginal, toiletDepth],
+  //   id: "toilet",
+  // },
   // {
   //   vth: 5,
   //   hth: 35,

@@ -44,7 +44,7 @@ void main() {
 // https://bitbucket.sberned.ru/projects/FC/repos/web-ui-library/browse/components/tooltip/src/Tooltip.tsx#295,299,311,318
 const getNode = (getPortalMountNode) => {
   return new Promise((resolve) => {
-    const fallback = () => resolve(document.body);
+    const fallback = () => resolve({ current: document.body });
     let count = 0;
 
     if (getPortalMountNode) {
@@ -291,7 +291,9 @@ export default class Sketch {
     if (!this.scrollNode) {
       this.scrollNode = await getNode(this.getScrollNode);
     }
-    this.scrollNode.current.addEventListener('scroll', (e) => {
+    
+    // this.scrollNode.current.addEventListener('scroll', (e) => {
+    window.addEventListener('scroll', (e) => {
       const rect = this.canvas.getBoundingClientRect();
       const SCROLL_LINE = 2;
       const UP_TO_TOP = 0.5
