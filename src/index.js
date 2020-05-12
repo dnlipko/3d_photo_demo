@@ -57,13 +57,13 @@ import img_2_12Depth from "./img/2_12-map.png";
 
 const sketches = [
   {
-    vth: 10,
+    vth: 8,
     hth: 25,
     imageURLs : [img_2_6, img_2_6Depth],
     id: "img_2_6",
   },
   {
-    vth: 20,
+    vth: 10,
     hth: 25,
     imageURLs : [img_2_7, img_2_7Depth],
     id: "img_2_7",
@@ -87,7 +87,7 @@ const sketches = [
     id: "img_2_2",
   },
   {
-    vth: 25,
+    vth: 10,
     hth: 25,
     imageURLs : [img_2_12, img_2_12Depth],
     id: "img_2_12",
@@ -100,19 +100,19 @@ const sketches = [
     id: "img_2_8",
   },
   {
-    vth: 20,
+    vth: 10,
     hth: 25,
     imageURLs : [img_2_10, img_2_10Depth],
     id: "img_2_10",
   },
   {
-    vth: 15,
+    vth: 10,
     hth: 15,
     imageURLs : [roomOriginal, roomDepth],
     id: "room",
   },
   {
-    vth: 15,
+    vth: 10,
     hth: 10,
     imageURLs : [tvOriginal, tvDepth],
     id: "tv",
@@ -204,7 +204,7 @@ const webImages = [
 const mobileImages = [
   {
     image: '3d-image-mobile-1',
-    id: 0
+    id: 4
   }, 
   {
     image: '3d-image-mobile-2',
@@ -212,7 +212,7 @@ const mobileImages = [
   }, 
   {
     image: '3d-image-mobile-3',
-    id: 4
+    id: 0
   }, 
   // {
   //   image: '3d-image-mobile-4',
