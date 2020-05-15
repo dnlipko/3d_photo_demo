@@ -31,8 +31,19 @@ vec2 mirrored(vec2 v) {
 }
 
 void main() {
-  // uvs and textures
-  vec2 uv = pixelRatio*gl_FragCoord.xy / resolution.xy ;
+
+  vec2 uv;
+
+  if (resolution.z < resolution.w) {
+    // горизонтальное изображение
+    // float hiddenSpace = resolution.z * resolution.y / 2.0
+    uv = pixelRatio*(gl_FragCoord.xy + vec2((resolution.x - resolution.y) / 2.0 * mouse.x, 0))/ resolution.xy;
+  } else {
+    // вертикальное изображение
+    uv = pixelRatio*(gl_FragCoord.xy + vec2(0, (resolution.y - resolution.x) / 2.0 * (-mouse.y))) / resolution.xy;
+    // uv = pixelRatio*(gl_FragCoord.xy) / resolution.xy;
+  }
+
   vec2 vUv = (uv - vec2(0.5))*resolution.zw + vec2(0.5);
   vUv.y = 1. - vUv.y;
   vec4 tex1 = texture2D(image1,mirrored(vUv));
@@ -79,7 +90,7 @@ export default class Sketch {
     this.canvas = document.createElement('canvas');
     this.container.appendChild(this.canvas);
     this.gl = this.canvas.getContext('webgl');
-    this.ratio = window.devicePixelRatio;
+    this.ratio = window.devicePixelRatio; // отношение размера одного физического пикселя к размеру одного логического (CSS) пикселя
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
     this.mouseX = 0;

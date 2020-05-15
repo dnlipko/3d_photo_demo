@@ -22,9 +22,6 @@ import tvDepth from "./img/tv-map.jpg";
 import toiletOriginal from "./img/toilet.jpg";
 import toiletDepth from "./img/toilet-map.jpg";
 
-import duckOriginal from "./img/duck.HEIC";
-import duckDepth from "./img/duck-map.png";
-
 import ballOriginal from "./img/ball.jpg";
 import ballDepth from "./img/ball-map.jpg";
 
@@ -57,13 +54,13 @@ import img_2_12Depth from "./img/2_12-map.png";
 
 const sketches = [
   {
-    vth: 8,
+    vth: 25,
     hth: 25,
     imageURLs : [img_2_6, img_2_6Depth],
     id: "img_2_6",
   },
   {
-    vth: 10,
+    vth: 30,
     hth: 25,
     imageURLs : [img_2_7, img_2_7Depth],
     id: "img_2_7",
@@ -87,32 +84,32 @@ const sketches = [
     id: "img_2_2",
   },
   {
-    vth: 10,
+    vth: 25,
     hth: 25,
     imageURLs : [img_2_12, img_2_12Depth],
     id: "img_2_12",
   },
 
   {
-    vth: 10,
+    vth: 25,
     hth: 25,
     imageURLs : [img_2_8, img_2_8Depth],
     id: "img_2_8",
   },
   {
-    vth: 10,
+    vth: 25,
     hth: 25,
     imageURLs : [img_2_10, img_2_10Depth],
     id: "img_2_10",
   },
   {
-    vth: 10,
+    vth: 25,
     hth: 15,
     imageURLs : [roomOriginal, roomDepth],
     id: "room",
   },
   {
-    vth: 10,
+    vth: 25,
     hth: 10,
     imageURLs : [tvOriginal, tvDepth],
     id: "tv",
@@ -146,12 +143,6 @@ const sketches = [
     hth: 45,
     imageURLs : [toiletOriginal, toiletDepth],
     id: "toilet",
-  },
-  {
-    vth: 5,
-    hth: 35,
-    imageURLs : [duckOriginal, duckDepth],
-    id: "duck",
   },
 ];
 
