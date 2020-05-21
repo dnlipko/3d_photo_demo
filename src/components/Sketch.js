@@ -4,7 +4,7 @@
 import GyroNorm from '../lib/gyronorm';
 const gn = new GyroNorm.GyroNorm();
 
-
+let i = 0;
 const vertex = `attribute vec2 a_position;
 
 void main() {
@@ -19,6 +19,7 @@ const fragment = `
 uniform vec4 resolution;
 uniform vec2 mouse;
 uniform vec2 threshold;
+uniform vec2 naturalSize;
 uniform float time;
 uniform float pixelRatio;
 uniform sampler2D image0;
@@ -34,14 +35,15 @@ void main() {
 
   vec2 uv;
 
-  if (resolution.z < resolution.w) {
+  // uv = pixelRatio*gl_FragCoord.xy / resolution.xy ;
+
+  if (naturalSize.y < naturalSize.x) {
     // горизонтальное изображение
-    // float hiddenSpace = resolution.z * resolution.y / 2.0
-    uv = pixelRatio*(gl_FragCoord.xy + vec2((resolution.x - resolution.y) / 2.0 * mouse.x, 0))/ resolution.xy;
-  } else {
+    uv = pixelRatio*(gl_FragCoord.xy + vec2((naturalSize.y - naturalSize.x) / 4. * mouse.x + naturalSize.x / 12., naturalSize.y /24. + naturalSize.y /12. * mouse.y))/ resolution.xy;
+  } 
+  else {
     // вертикальное изображение
-    uv = pixelRatio*(gl_FragCoord.xy + vec2(0, (resolution.y - resolution.x) / 2.0 * (-mouse.y))) / resolution.xy;
-    // uv = pixelRatio*(gl_FragCoord.xy) / resolution.xy;
+    uv = pixelRatio*(gl_FragCoord.xy + vec2(0, (naturalSize.y - naturalSize.x) / 2.0 * mouse.y)) / resolution.xy;
   }
 
   vec2 vUv = (uv - vec2(0.5))*resolution.zw + vec2(0.5);
@@ -137,8 +139,6 @@ export default class Sketch {
   }
 
   resizeHandler() {
-  	this.windowWidth = window.innerWidth;
-  	this.windowHeight = window.innerHeight;
     this.width = this.container.offsetWidth;
     // this.height = this.width/this.aspect;
     this.height = this.container.offsetHeight;
@@ -155,7 +155,12 @@ export default class Sketch {
       a1 = (this.width/this.height) * this.imageAspect ;
       a2 = 1;
     }
-    this.uResolution.set( this.width, this.height, a1, a2 );
+    console.log(this.id, this.width, this.height, a1, a2);
+    if (this.naturalWidth > this.naturalHeight) {
+      this.uResolution.set( this.width * 1.2, this.height * 1.2, a1, a2 );
+    } else {
+      this.uResolution.set( this.width, this.height, a1, a2 );
+    }
     this.uRatio.set( 1/this.ratio );
     this.uThreshold.set( this.hth, this.vth );
     this.gl.viewport( 0, 0, this.width*this.ratio, this.height*this.ratio );
@@ -182,6 +187,7 @@ export default class Sketch {
     this.uTime = new Uniform( 'time', '1f' , this.program, this.gl );
     this.uRatio = new Uniform( 'pixelRatio', '1f' , this.program, this.gl );
     this.uThreshold = new Uniform( 'threshold', '2f' , this.program, this.gl );
+    this.uNaturalSize = new Uniform( 'naturalSize', '2f' , this.program, this.gl );
     // create position attrib
     this.billboard = new Rect( this.gl );
     this.positionLocation = this.gl.getAttribLocation( this.program, 'a_position' );
@@ -201,6 +207,9 @@ export default class Sketch {
 
     // connect images
     this.imageAspect = images[0].naturalHeight/images[0].naturalWidth;
+    this.naturalHeight = images[0].naturalHeight;
+    this.naturalWidth = images[0].naturalWidth;
+    this.uNaturalSize.set(this.naturalWidth, this.naturalHeight);
     for (var i = 0; i < images.length; i++) {
       
 
@@ -293,9 +302,27 @@ export default class Sketch {
 
   		this.mouseTargetX = (halfX - x)/halfX;
       this.mouseTargetY = (halfY - y)/halfY;
+      // this.id === "room" && console.log('mousemove', this.mouseTargetY);
       
-      // console.log(this.mouseTargetY);
+    });
+    
+    // stabilize scene on mouse leave by csroll position
+  	this.canvas.addEventListener('mouseleave', (e) => {
+  		this.setScrollValues()
   	});
+  }
+
+  setScrollValues() {
+    const rect = this.canvas.getBoundingClientRect();
+      const SCROLL_LINE = 0.5;
+      const value = - (window.innerHeight / 2 - rect.top - rect.height / 2) / (window.innerHeight / 2 * SCROLL_LINE);
+      if (value < 0) {
+        this.mouseTargetY = Math.max(-1, value);
+        this.mouseTargetX = -Math.max(-1, value);
+      } else {
+        this.mouseTargetY = Math.min(1, value);
+        this.mouseTargetX = -Math.min(1, value);
+      }
   }
 
   async scroll() {
@@ -305,20 +332,7 @@ export default class Sketch {
     
     // this.scrollNode.current.addEventListener('scroll', (e) => {
     window.addEventListener('scroll', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      const SCROLL_LINE = 2;
-      const UP_TO_TOP = 0.5
-      const value = - (window.innerHeight / 2 - rect.top - rect.height / 2) / window.innerHeight * 2 * SCROLL_LINE - UP_TO_TOP;
-      if (value < 0) {
-        this.mouseTargetY = Math.max(-1, value);
-      } else {
-        this.mouseTargetY = Math.min(1, value);
-      }
-
-      // this.mouseTargetY =  - (window.innerHeight / 2 - rect.top - rect.height / 2) / window.innerHeight * 2 * 1.5;
-      // this.mouseTargetX =  - (window.innerWidth / 2 - rect.top - rect.height / 2) / window.innerWidth * 2;
-      // this.mouseTargetX =  (window.innerWidth / 2 - rect.top - rect.height / 2) / window.innerWidth;
-      // this.id === 'kitchen' && console.log(this.mouseTargetY);
+      this.setScrollValues();
     })
   }
 
@@ -331,7 +345,7 @@ export default class Sketch {
     this.mouseX += (this.mouseTargetX - this.mouseX)*0.05;
     this.mouseY += (this.mouseTargetY - this.mouseY)*0.05;
 
-    // this.id = "duck" && console.log(this.mouseX, this.mouseY);
+
     this.uMouse.set( this.mouseX, this.mouseY );
 
     // render

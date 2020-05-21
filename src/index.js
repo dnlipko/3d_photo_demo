@@ -92,7 +92,7 @@ const sketches = [
 
   {
     vth: 25,
-    hth: 25,
+    hth: 10,
     imageURLs : [img_2_8, img_2_8Depth],
     id: "img_2_8",
   },
@@ -248,7 +248,7 @@ const renderNode = ({ image , id}) => {
 }
 
 webImages.forEach(renderNode);
-mobileImages.forEach(renderNode);
+// mobileImages.forEach(renderNode);
 
 
 
