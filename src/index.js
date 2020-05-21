@@ -248,7 +248,7 @@ const renderNode = ({ image , id}) => {
 }
 
 webImages.forEach(renderNode);
-// mobileImages.forEach(renderNode);
+mobileImages.forEach(renderNode);
 
 
 
