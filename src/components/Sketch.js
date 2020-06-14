@@ -316,7 +316,7 @@ export default class Sketch {
 
   setScrollValues() {
     const rect = this.canvas.getBoundingClientRect();
-      const SCROLL_LINE = 0.3;
+      const SCROLL_LINE = 0.35;
       const value = - (window.innerHeight / 2 - rect.top - rect.height / 2) / (window.innerHeight / 2 * SCROLL_LINE);
       if (value < 0) {
         this.mouseTargetY = Math.max(-1, value);
@@ -344,8 +344,8 @@ export default class Sketch {
     let currentTime = ( now - this.startTime ) / 1000;
     this.uTime.set( currentTime );
     // inertia
-    this.mouseX += (this.mouseTargetX - this.mouseX)*0.1;
-    this.mouseY += (this.mouseTargetY - this.mouseY)*0.1;
+    this.mouseX += (this.mouseTargetX - this.mouseX)*0.15;
+    this.mouseY += (this.mouseTargetY - this.mouseY)*0.15;
 
 
     this.uMouse.set( this.mouseX, this.mouseY );
