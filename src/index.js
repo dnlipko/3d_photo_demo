@@ -92,7 +92,7 @@ const sketches = [
 
   {
     vth: 25,
-    hth: 10,
+    hth: 20,
     imageURLs : [img_2_8, img_2_8Depth],
     id: "img_2_8",
   },
@@ -104,46 +104,46 @@ const sketches = [
   },
   {
     vth: 25,
-    hth: 15,
+    hth: 20,
     imageURLs : [roomOriginal, roomDepth],
     id: "room",
   },
+  // {
+  //   vth: 25,
+  //   hth: 10,
+  //   imageURLs : [tvOriginal, tvDepth],
+  //   id: "tv",
+  // },
+  // {
+  //   vth: 25,
+  //   hth: 15,
+  //   imageURLs : [ballOriginal, ballDepth],
+  //   id: "ball",
+  // },
+  // {
+  //   vth: 25,
+  //   hth: 15,
+  //   imageURLs : [ladyOriginal, ladyDepth],
+  //   id: "lady",
+  // },
+  // {
+  //   vth: 25,
+  //   hth: 15,
+  //   imageURLs : [mountOriginal, mountDepth],
+  //   id: "mount",
+  // },
   {
-    vth: 25,
-    hth: 10,
-    imageURLs : [tvOriginal, tvDepth],
-    id: "tv",
-  },
-  {
-    vth: 25,
-    hth: 15,
-    imageURLs : [ballOriginal, ballDepth],
-    id: "ball",
-  },
-  {
-    vth: 25,
-    hth: 15,
-    imageURLs : [ladyOriginal, ladyDepth],
-    id: "lady",
-  },
-  {
-    vth: 25,
-    hth: 15,
-    imageURLs : [mountOriginal, mountDepth],
-    id: "mount",
-  },
-  {
-    vth: 25,
-    hth: 20,
+    vth: 35,
+    hth: 30,
     imageURLs : [kitchenOriginal, kitchenDepth],
     id: "kitchen",
   },
-  {
-    vth: 15,
-    hth: 45,
-    imageURLs : [toiletOriginal, toiletDepth],
-    id: "toilet",
-  },
+  // {
+  //   vth: 15,
+  //   hth: 45,
+  //   imageURLs : [toiletOriginal, toiletDepth],
+  //   id: "toilet",
+  // },
 ];
 
 const webImages = [

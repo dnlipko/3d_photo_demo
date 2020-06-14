@@ -34,16 +34,18 @@ vec2 mirrored(vec2 v) {
 void main() {
 
   vec2 uv;
+  float coef = 0.2;
+  float coef_horiz = 0.4;
 
   // uv = pixelRatio*gl_FragCoord.xy / resolution.xy ;
 
   if (naturalSize.y < naturalSize.x) {
     // горизонтальное изображение
-    uv = pixelRatio*(gl_FragCoord.xy + vec2((naturalSize.y - naturalSize.x) / 4. * mouse.x + naturalSize.x / 12., naturalSize.y /24. + naturalSize.y /12. * mouse.y))/ resolution.xy;
+    uv = pixelRatio*(gl_FragCoord.xy + vec2((naturalSize.y - naturalSize.x) / 4. * mouse.x + naturalSize.x / 12., naturalSize.y /24. + naturalSize.y /12. * mouse.y) * coef_horiz)/ resolution.xy;
   } 
   else {
     // вертикальное изображение
-    uv = pixelRatio*(gl_FragCoord.xy + vec2(0, (naturalSize.y - naturalSize.x) / 2.0 * mouse.y)) / resolution.xy;
+    uv = pixelRatio*(gl_FragCoord.xy + vec2(0, (naturalSize.y - naturalSize.x) / 2.0 * mouse.y) * coef) / resolution.xy;
   }
 
   vec2 vUv = (uv - vec2(0.5))*resolution.zw + vec2(0.5);
@@ -314,7 +316,7 @@ export default class Sketch {
 
   setScrollValues() {
     const rect = this.canvas.getBoundingClientRect();
-      const SCROLL_LINE = 0.5;
+      const SCROLL_LINE = 0.3;
       const value = - (window.innerHeight / 2 - rect.top - rect.height / 2) / (window.innerHeight / 2 * SCROLL_LINE);
       if (value < 0) {
         this.mouseTargetY = Math.max(-1, value);
@@ -342,8 +344,8 @@ export default class Sketch {
     let currentTime = ( now - this.startTime ) / 1000;
     this.uTime.set( currentTime );
     // inertia
-    this.mouseX += (this.mouseTargetX - this.mouseX)*0.05;
-    this.mouseY += (this.mouseTargetY - this.mouseY)*0.05;
+    this.mouseX += (this.mouseTargetX - this.mouseX)*0.1;
+    this.mouseY += (this.mouseTargetY - this.mouseY)*0.1;
 
 
     this.uMouse.set( this.mouseX, this.mouseY );
